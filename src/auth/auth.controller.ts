@@ -14,9 +14,6 @@ export class AuthController {
     return this.authService.signup();
   }
 
-  // @Post('collection')
-  // collectionsSetId
-
   @Post('signin')
   signin() {
     return this.authService.signin();
