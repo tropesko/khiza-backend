@@ -12,11 +12,10 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String
+  email String @unique
   hash String
 
-  firstName String
-  lastName String
+  @@map("users")
 }
 
 model Collections {
@@ -58,6 +57,6 @@ model Royalties {
   recipient String
   breakdown String[]
   bps Int
-  collection Collections? @relation(fields: [collectionId], references: [id])
   collectionId String?
+  collection Collections? @relation(fields: [collectionId], references: [id])
 }
