@@ -19,44 +19,36 @@ model User {
 }
 
 model Collections {
-  id String @unique
-  slug String
-  createdAt DateTime
-  name String
-  image String
-  banner String
-  discordUrl String
-  externalUrl String
-  twitterUsername String
+  id Int @id @default(autoincrement())
+  collectionId              String
+  slug                      String
+  createdAt                 DateTime
+  name                      String
+  image                     String
+  banner                    String
+  discordUrl                String?
+  externalUrl               String?
+  twitterUsername           String?
   openseaVerificationStatus String
-  description String
-  sampleImages String[]
-  tokenCount String
-  onSaleCount String
-  primaryContract String
-  tokenSetId String
-  creator String
-  royalties Royalties[]
-  // allRoyalties AllRoyalties
-  // floorAsk FloorAsk
-  // topBid TopBid
-  // rank Rank
-  // volume Volume
-  // volumeChange VolumeChange
-  // floorSale FloorSale
-  // floorSaleChange FloorSaleChange
-  collectionBidSupported Boolean
-  ownerCount Int
-  contractKind String
-  mintedTimestamp Int
-  mintStages String
-}
-
-model Royalties {
-  id String @unique
-  recipient String
-  breakdown String[]
-  bps Int
-  collectionId String?
-  collection Collections? @relation(fields: [collectionId], references: [id])
+  description               String
+  sampleImages              String[]
+  tokenCount                Int
+  onSaleCount               Int
+  primaryContract           String
+  tokenSetId                String
+  creator                   String
+  royalties                 Json
+  allRoyalties              Json
+  floorAsk                  Json
+  topBid                    Json
+  rank                      Json
+  volume                    Json
+  volumeChange              Json
+  floorSale                 Json
+  floorSaleChange           Json
+  collectionBidSupported    Boolean
+  ownerCount                Int
+  contractKind              String
+  mintedTimestamp           DateTime?
+  mintStages                Json[]
 }

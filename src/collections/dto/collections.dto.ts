@@ -1,40 +1,33 @@
-export interface CollectionsDto {
-  id: string;
+export class CollectionsDto {
+  collectionId: string;
   slug: string;
-  createdAt: string;
+  createdAt: Date;
   name: string;
   image: string;
   banner: string;
-  discordUrl: string;
-  externalUrl: string;
-  twitterUsername: string;
+  discordUrl: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
   openseaVerificationStatus: string;
   description: string;
   sampleImages: string[];
-  tokenCount: string;
-  onSaleCount: string;
+  tokenCount: number;
+  onSaleCount: number;
   primaryContract: string;
   tokenSetId: string;
   creator: string;
-  royalties: string[];
-  // allRoyalties: { opensea: any[] };
-  // floorAsk: FloorAsk;
-  // topBid: TopBid;
-  // rank: Rank;
-  // volume: Volume;
-  // volumeChange: VolumeChange;
-  // floorSale: FloorSale;
-  // floorSaleChange: FloorSaleChange;
+  royalties: any;
+  allRoyalties: any
+  floorAsk: any;
+  topBid: any;
+  rank: any;
+  volume: any;
+  volumeChange: any;
+  floorSale: any;
+  floorSaleChange: any;
   collectionBidSupported: boolean;
   ownerCount: number;
   contractKind: string;
-  mintedTimestamp: number;
-  mintStages: string;
+  mintedTimestamp: Date | null;
+  mintStages: any[];
 }
-//   const data: CollectionDTO = {
-//     collections: [
-//       {},
-//     ],
-//   };
-
-// export default data;
