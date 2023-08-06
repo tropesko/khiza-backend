@@ -1,33 +1,37 @@
 export class CollectionsDto {
-  collectionId: string;
-  slug: string;
-  createdAt: Date;
-  name: string;
-  image: string;
-  banner: string;
+  id: string;
+  slug: string | null;
+  createdAt: Date | null;
+  name: string | null;
+  image: string | null;
+  banner: string | null;
   discordUrl: string | null;
   externalUrl: string | null;
   twitterUsername: string | null;
-  openseaVerificationStatus: string;
-  description: string;
-  sampleImages: string[];
-  tokenCount: number;
-  onSaleCount: number;
-  primaryContract: string;
-  tokenSetId: string;
-  creator: string;
-  royalties: any;
-  allRoyalties: any
-  floorAsk: any;
-  topBid: any;
-  rank: any;
-  volume: any;
-  volumeChange: any;
-  floorSale: any;
-  floorSaleChange: any;
-  collectionBidSupported: boolean;
-  ownerCount: number;
-  contractKind: string;
-  mintedTimestamp: Date | null;
-  mintStages: any[];
+  openseaVerificationStatus: string | null;
+  description: string | null;
+  sampleImages: string[] | null;
+  tokenCount: string | null;
+  onSaleCount: string | null;
+  primaryContract: string | null;
+  tokenSetId: string | null;
+  creator: string | null;
+  collectionBidSupported: boolean | null;
+  ownerCount: number | null;
+  contractKind: string | null;
+  mintedTimestamp: string | null;
+  mintStages: string[] | null;
+}
+
+export class RoyaltiesDto {
+  id: string;
+  recipient: string | null;
+  breakdown: string[] | null;
+  bps: number | null;
+}
+
+export class FloorSaleChangeDto {
+  oneDay: number | null;
+  sevenDays: number | null;
+  thirtyDays: number | null;
 }

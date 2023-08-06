@@ -6,12 +6,20 @@ import { CollectionsDto } from './dto/collections.dto';
 export class CollectionsService {
   constructor(private prisma: PrismaService) {}
   async createCollection(dto: CollectionsDto) {
-    console.log('bateu aqui')
-    // console.log(dto)
+    const existingCollection = await this.prisma.collections.findUnique({
+      where: {
+        id: dto.id,
+      },
+    });
+
+    if (existingCollection) {
+      return { msg: 'Collection already exists on database.' }
+    }
+
     try {
-        const collections = this.prisma.collections.create({
+        const newCollection = this.prisma.collections.create({
           data: {
-            id: dto.collectionId,
+            id: dto.id,
             slug: dto.slug,
             createdAt: dto.createdAt,
             name: dto.name,
@@ -31,22 +39,13 @@ export class CollectionsService {
             collectionBidSupported: dto.collectionBidSupported,
             ownerCount: dto.ownerCount,
             contractKind: dto.contractKind,
-            mintedTimestamp: dto.mintedTimestamp,
+            mintedTimestamp: dto.mintedTimestamp || '',
             mintStages: dto.mintStages,
           },
         })
-        return collections;
+        return newCollection
     }catch (error) {
-        throw new Error('Error while fetching collections');
-    }
-  }
-
-  async getCollectionById(id) {
-    try {
-        const collections = await this.prisma.collections.findUnique(id)
-        return collections;
-    }catch (error) {
-        throw new Error('Error while fetching collection');
+        throw new Error('Error while creating collection.');
     }
   }
 }

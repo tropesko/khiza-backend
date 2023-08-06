@@ -25,7 +25,8 @@ export class AuthService {
           createdAt: true,
         }
       })
-      return this.signToken(user.id, user.email);
+      this.signToken(user.id, user.email);
+      return { msg: 'User created!' }
     } catch(error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {

@@ -11,7 +11,6 @@ model User {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   email String @unique
   hash String
 
@@ -19,36 +18,52 @@ model User {
 }
 
 model Collections {
-  id Int @id @default(autoincrement())
-  collectionId              String
+  id                        String @unique
   slug                      String
   createdAt                 DateTime
   name                      String
   image                     String
   banner                    String
-  discordUrl                String?
-  externalUrl               String?
-  twitterUsername           String?
+  discordUrl                String
+  externalUrl               String
+  twitterUsername           String
   openseaVerificationStatus String
   description               String
   sampleImages              String[]
-  tokenCount                Int
-  onSaleCount               Int
+  tokenCount                String
+  onSaleCount               String
   primaryContract           String
   tokenSetId                String
   creator                   String
-  royalties                 Json
-  allRoyalties              Json
-  floorAsk                  Json
-  topBid                    Json
-  rank                      Json
-  volume                    Json
-  volumeChange              Json
-  floorSale                 Json
-  floorSaleChange           Json
   collectionBidSupported    Boolean
   ownerCount                Int
   contractKind              String
-  mintedTimestamp           DateTime?
-  mintStages                Json[]
+  mintedTimestamp           String
+  mintStages                String[]
+  royaties                  Royalties[]
+  floorSaleChange           FloorSaleChange[]
+
+  @@map("collections")
+}
+
+model Royalties {
+  id            Int @id @default(autoincrement())
+  recipient     String
+  breakdown     String[]
+  bps           Int
+  collectionId  String
+  collection Collections @relation(fields: [collectionId], references: [id])
+
+  @@map("royalties")
+}
+
+model FloorSaleChange {
+  id            Int @id @default(autoincrement())
+  oneDay        Int
+  sevenDays     Int
+  thirtyDays    Int
+  collectionId  String
+  collection Collections @relation(fields: [collectionId], references: [id])
+
+  @@map("floorSaleChange")
 }

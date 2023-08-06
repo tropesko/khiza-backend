@@ -1,5 +1,4 @@
 import { Controller, Post, Req, Get, UseGuards, Query } from '@nestjs/common';
-import { CollectionsDto } from './dto/collections.dto';
 import { Request } from 'express';
 import { JwtGuard } from 'src/auth/guard';
 import { CollectionsService } from './collections.service';
@@ -10,12 +9,7 @@ export class CollectionsController {
 
   @UseGuards(JwtGuard)
   @Get('user')
-  getUser(@Req() req: Request) {
-    console.log({
-      req,
-    });
-    return req.user;
-  }
+  getUser(@Req() req: Request) { return req.user }
 
   @UseGuards(JwtGuard)
   @Post()
@@ -24,11 +18,13 @@ export class CollectionsController {
       const sdk = require('api')(process.env.RESERVOIR_PROTOCOL);
 
       sdk.auth(process.env.API_KEY);
-      const response = await sdk.getCollectionsV6({id, accept: '*/*'});
-      const data = response.data;
+      const response = await sdk.getCollectionsV6(id);
 
-      console.log(id)
-      // return data;
+      const data = response.data.collections[0]
+      // const royalties = data.royalties;
+      // const floorSaleChange = data.floorSaleChange;
+      // console.log(floorSaleChange)
+
       return this.collectionsService.createCollection(data);
     } catch (error) {
       console.error(error);
