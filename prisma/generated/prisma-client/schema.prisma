@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String @unique
+  hash String
+
+  @@map("users")
+}
+
+model Collections {
+  id                           Int                 @id @default(autoincrement())
+  name                         String?             @unique
+  // collection_id             String              @unique
+  // slug                      String?
+  // created_at                DateTime?
+  // image                     String?
+  // banner                    String?
+  // discord_url               String?
+  // external_url              String?
+  // twitter_username          String?
+  // opensea_verification_status String?
+  // description               String?
+  // token_count               Int?
+  // on_sale_count             Int?
+  // primary_contract          String?
+  // token_set_id              String?
+  // creator                   String?
+  // collection_bid_supported  Boolean?
+  // owner_count               Int?
+  // contract_kind             String?
+  // minted_timestamp          DateTime?
+  // sample_images             SampleImage[]
+  // royalties                 Royalty[]
+  // all_royalties             AllRoyalty[]
+  // floor_ask                 FloorAsk?
+  // top_bid                   TopBid?
+  // rank                      Rank?
+  // volume                    Volume?
+  // volume_change             VolumeChange?
+  // floor_sale                FloorSale?
+  // floor_sale_change         FloorSaleChange?
+
+  @@map("collections")
+}
+
+// model SampleImage {
+//   id             Int      @id @default(autoincrement())
+//   image_url      String
+//   collection_id String
+//   collection    Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model Royalty {
+//   id             Int      @id @default(autoincrement())
+//   recipient      String
+//   bps            Int
+//   collection_id String
+//   collection    Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model AllRoyalty {
+//   id             Int      @id @default(autoincrement())
+//   opensea            Int
+//   collection_id String
+//   collection    Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model FloorAsk {
+//   id                Int      @id @default(autoincrement())
+//   source_domain     String
+//   currency_contract String
+//   currency_name     String
+//   currency_symbol   String
+//   currency_decimals Int
+//   price_amount      Decimal
+//   price_decimal     Decimal
+//   price_usd         Decimal
+//   price_native      Decimal
+//   maker             String
+//   valid_from        DateTime
+//   valid_until       DateTime
+//   collection_id     String @unique
+//   collection     Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model TopBid {
+//   id               Int      @id @default(autoincrement())
+//   collection_id   String @unique
+//   source_domain   String
+//   currency_contract String
+//   currency_name   String
+//   currency_symbol String
+//   currency_decimals Int
+//   price_amount    Decimal
+//   price_decimal   Decimal
+//   price_usd       Decimal
+//   price_native    Decimal
+//   net_price_amount    Decimal
+//   net_price_decimal   Decimal
+//   net_price_usd       Decimal
+//   net_price_native    Decimal
+//   maker           String
+//   valid_from      DateTime
+//   valid_until     DateTime
+//   collection     Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model Rank {
+//   id             Int      @id @default(autoincrement())
+//   collection_id String @unique
+//   rank_1day      Int
+//   rank_7day      Int
+//   rank_30day     Int
+//   rank_all_time  Int
+//   collection    Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model Volume {
+//   id             Int      @id @default(autoincrement())
+//   collection_id String @unique
+//   volume_1day    Decimal
+//   volume_7day    Decimal
+//   volume_30day   Decimal
+//   volume_all_time Decimal
+//   collection    Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model VolumeChange {
+//   id             Int      @id @default(autoincrement())
+//   collection_id String @unique
+//   change_1day    Decimal
+//   change_7day    Decimal
+//   change_30day   Decimal
+//   collection    Collection @relation(fields: [collection_id], references: [id])
+// }
+
+// model FloorSale {
+//   id             Int      @id @default(autoincrement())
+//   sale_1day      Decimal
+//   sale_7day      Decimal
+//   sale_30day     Decimal
+//   collection_id String @unique
+//   collection    Collection @relation(fields: [collection_id], references: [collection_id])
+// }
+
+// model FloorSaleChange {
+//   id             Int      @id @default(autoincrement())
+//   change_1day    Decimal
+//   change_7day    Decimal
+//   change_30day   Decimal
+//   collection_id String @unique
+//   collection    Collection @relation(fields: [collection_id], references: [collection_id])
+// }
+
+
+// model Collections {
+//   id Int @id @default(autoincrement())
+//   collectionId              String
+//   slug                      String
+//   createdAt                 DateTime
+//   name                      String
+//   image                     String
+//   banner                    String
+//   discordUrl                String?
+//   externalUrl               String?
+//   twitterUsername           String?
+//   openseaVerificationStatus String
+//   description               String
+//   sampleImages              String[]
+//   tokenCount                Int
+//   onSaleCount               Int
+//   primaryContract           String
+//   tokenSetId                String
+//   creator                   String
+//   royalties                 Json
+//   allRoyalties              Json
+//   floorAsk                  Json
+//   topBid                    Json
+//   rank                      Json
+//   volume                    Json
+//   volumeChange              Json
+//   floorSale                 Json
+//   floorSaleChange           Json
+//   collectionBidSupported    Boolean
+//   ownerCount                Int
+//   contractKind              String
+//   mintedTimestamp           DateTime?
+//   mintStages                Json[]
+// }
