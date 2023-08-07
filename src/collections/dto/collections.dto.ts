@@ -1,49 +1,33 @@
-
-// type floorSale = {
-//   '1day': number;
-//   '7day': number;
-//   '30day': number;
-// }
-
-import { IsNotEmpty, IsString } from "class-validator";
-
-// type floorSaleChange = {
-//   '1day': number;
-//   '7day': number;
-//   '30day': number;
-// }
-
 export class CollectionsDto {
-  @IsString()
-  @IsNotEmpty()
-  collection_id: string;
-
-  @IsString()
-  @IsNotEmpty()
-  name: string;
-
-  // collection_id: any;
-  // id: string;
-  // slug: string;
-  // createdAt: Date;
-  // name: string;
-  // image: string;
-  // banner: string;
-  // discordUrl: string | null;
-  // externalUrl: string | null;
-  // twitterUsername: string | null;
-  // openseaVerificationStatus: string;
-  // description: string;
-  // sampleImages: string[];
-  // tokenCount: number;
-  // onSaleCount: number;
-  // primaryContract: string;
-  // tokenSetId: string;
-  // creator: string;
-  // collectionBidSupported: boolean;
-  // ownerCount: number;
-  // contractKind: string;
-  // mintedTimestamp: Date | null;
-  // floorSale: floorSale;
-  // floorSaleChange: floorSaleChange;
+  id: string;
+  slug: string | null;
+  createdAt: Date | null;
+  name: string | null;
+  image: string | null;
+  banner: string | null;
+  discordUrl: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  openseaVerificationStatus: string | null;
+  description: string | null;
+  sampleImages: string[] | null;
+  tokenCount: string | null;
+  onSaleCount: string | null;
+  primaryContract: string | null;
+  tokenSetId: string | null;
+  creator: string | null;
+  royalties: any;
+  allRoyalties: any;
+  floorAsk: any;
+  topBid: any;
+  rank: any;
+  volume: any;
+  collectionBidSupported: boolean | null;
+  ownerCount: number | null;
+  contractKind: string | null;
+  mintedTimestamp: string | null;
+  mintStages: string[] | null;
+  volumeChange: any;
+  floorSale: any;
+  floorSaleChange: any;
 }
