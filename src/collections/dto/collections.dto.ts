@@ -16,22 +16,18 @@ export class CollectionsDto {
   primaryContract: string | null;
   tokenSetId: string | null;
   creator: string | null;
+  royalties: any;
+  allRoyalties: any;
+  floorAsk: any;
+  topBid: any;
+  rank: any;
+  volume: any;
   collectionBidSupported: boolean | null;
   ownerCount: number | null;
   contractKind: string | null;
   mintedTimestamp: string | null;
   mintStages: string[] | null;
-}
-
-export class RoyaltiesDto {
-  id: string;
-  recipient: string | null;
-  breakdown: string[] | null;
-  bps: number | null;
-}
-
-export class FloorSaleChangeDto {
-  oneDay: number | null;
-  sevenDays: number | null;
-  thirtyDays: number | null;
+  volumeChange: any;
+  floorSale: any;
+  floorSaleChange: any;
 }

@@ -28,33 +28,20 @@ CREATE TABLE "collections" (
     "primaryContract" TEXT NOT NULL,
     "tokenSetId" TEXT NOT NULL,
     "creator" TEXT NOT NULL,
+    "royalties" JSONB NOT NULL,
+    "allRoyalties" JSONB NOT NULL,
+    "floorAsk" JSONB NOT NULL,
+    "topBid" JSONB NOT NULL,
+    "rank" JSONB NOT NULL,
+    "volume" JSONB NOT NULL,
     "collectionBidSupported" BOOLEAN NOT NULL,
     "ownerCount" INTEGER NOT NULL,
     "contractKind" TEXT NOT NULL,
     "mintedTimestamp" TEXT NOT NULL,
-    "mintStages" TEXT[]
-);
-
--- CreateTable
-CREATE TABLE "royalties" (
-    "id" SERIAL NOT NULL,
-    "recipient" TEXT NOT NULL,
-    "breakdown" TEXT[],
-    "bps" INTEGER NOT NULL,
-    "collectionId" TEXT NOT NULL,
-
-    CONSTRAINT "royalties_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "floorSaleChange" (
-    "id" SERIAL NOT NULL,
-    "oneDay" INTEGER NOT NULL,
-    "sevenDays" INTEGER NOT NULL,
-    "thirtyDays" INTEGER NOT NULL,
-    "collectionId" TEXT NOT NULL,
-
-    CONSTRAINT "floorSaleChange_pkey" PRIMARY KEY ("id")
+    "mintStages" TEXT[],
+    "volumeChange" JSONB NOT NULL,
+    "floorSale" JSONB NOT NULL,
+    "floorSaleChange" JSONB NOT NULL
 );
 
 -- CreateIndex
@@ -62,9 +49,3 @@ CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "collections_id_key" ON "collections"("id");
-
--- AddForeignKey
-ALTER TABLE "royalties" ADD CONSTRAINT "royalties_collectionId_fkey" FOREIGN KEY ("collectionId") REFERENCES "collections"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "floorSaleChange" ADD CONSTRAINT "floorSaleChange_collectionId_fkey" FOREIGN KEY ("collectionId") REFERENCES "collections"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

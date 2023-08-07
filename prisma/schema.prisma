@@ -35,35 +35,21 @@ model Collections {
   primaryContract           String
   tokenSetId                String
   creator                   String
+  royalties                 Json
+  allRoyalties              Json
+  floorAsk                  Json
+  topBid                    Json
+  rank                      Json
+  volume                    Json
   collectionBidSupported    Boolean
   ownerCount                Int
   contractKind              String
   mintedTimestamp           String
   mintStages                String[]
-  royaties                  Royalties[]
-  floorSaleChange           FloorSaleChange[]
+  volumeChange              Json
+  floorSale                 Json
+  floorSaleChange           Json
 
   @@map("collections")
 }
 
-model Royalties {
-  id            Int @id @default(autoincrement())
-  recipient     String
-  breakdown     String[]
-  bps           Int
-  collectionId  String
-  collection Collections @relation(fields: [collectionId], references: [id])
-
-  @@map("royalties")
-}
-
-model FloorSaleChange {
-  id            Int @id @default(autoincrement())
-  oneDay        Int
-  sevenDays     Int
-  thirtyDays    Int
-  collectionId  String
-  collection Collections @relation(fields: [collectionId], references: [id])
-
-  @@map("floorSaleChange")
-}
